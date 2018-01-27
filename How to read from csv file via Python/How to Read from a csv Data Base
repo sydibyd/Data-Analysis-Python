@@ -1,0 +1,25 @@
+import csv
+
+with open('DB.csv') as csvfile:
+    readCSV = csv.reader(csvfile, delimiter=',')
+    dates = []
+    colors = []
+    xes = []
+    for row in readCSV:
+        color = row[3]
+        date = row[0]
+        x = row[2]
+
+        dates.append(date)
+        colors.append(color)
+        xes.append(x)
+
+
+    print(dates)
+    print(colors)
+    print(xes)
+
+    for rowow in xes:
+            intg = int(rowow)
+            if intg % 2 == 0:
+                print('Voici la meteo :',rowow)
