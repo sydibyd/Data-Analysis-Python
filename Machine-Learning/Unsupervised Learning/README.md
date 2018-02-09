@@ -20,7 +20,50 @@ X = np.dot(np.random.random(size=(2, 2)), np.random.normal(size=(2, 200))).T
 plt.plot(X[:, 0], X[:, 1], 'o')
 plt.axis('equal');
 ```
-
-OUTPUT : 
+OUTPUT: 
 
 ![image](/uploads/c6f122419b6caba1c093777b07d0d484/image.png)
+
+As is showed in image, we have a definite trend in data. Now we are goint to find the Principal Axes in th data with PCA:
+
+```
+from sklearn.decomposition import PCA
+pca = PCA(n_components=2)
+pca.fit(X)
+print(pca.explained_variance_ratio_)
+print(pca.components_)
+```
+OUTPUT:
+![image](/uploads/79268d026cfcbae92e4353499fb1ba21/image.png)
+
+Let's to look at these numbers as vectors plottes on top of the data:
+```
+plt.plot(X[:, 0], X[:, 1], 'o', alpha=0.5)
+for length, vector in zip(pca.explained_variance_, pca.components_):
+    v = vector * 3 * np.sqrt(length)
+    plt.plot([0, v[0]], [0, v[1]], '-k', lw=3)
+plt.axis('equal');
+```
+OUTPUT:
+![image](/uploads/2437fee02587c54420582ff05c1245f2/image.png)
+
+As showed in image, one vector is longer than other, that means the "important" of each direction. 
+Knowing that the second principal component could be completely ignored with no much loss of information, may be interesting to see what the data look like by keeping 95% of the variance:
+```
+clf = PCA(0.95) # keep 95% of variance
+X_trans = clf.fit_transform(X)
+print(X.shape)
+print(X_trans.shape)
+```
+OUTPUT:
+![image](/uploads/ca6a90c93c7b14e5d5e6d7036fb71621/image.png)
+
+We are compressing the data be throwing away 5% of the variance. Voici the data after the compression:
+```
+X_new = clf.inverse_transform(X_trans)
+plt.plot(X[:, 0], X[:, 1], 'o', alpha=0.2)
+plt.plot(X_new[:, 0], X_new[:, 1], 'ob', alpha=0.8)
+plt.axis('equal');
+```
+
+
