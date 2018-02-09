@@ -108,12 +108,18 @@ OUTPUT:
 More easy to look at the relationships between the digits. The optimal stretch and rotation in finded in 64-dimentional space, that permit to see the layout of digits with no reference to  the labels.
 
 **Components**
+
 PCA as a usful dimensionality reduction algorithm, having a very intuitive interpretation via eigenvectors. 
 The input data (digits here) is represented as a vector:
 
-$$
-x = [x_1, x_2, x_3 \cdots]
-$$
+![image](/uploads/60288412e6983d187ca7379d897ff687/image.png)
+
+If you like to really know what this means:
+![image](/uploads/1671061feb741ee7d042ec761e53b161/image.png)
+
+Now if we reduce the dimentionality in the pixel space (lets say to 6), we recover a partial image:
+
+
 
 ```
 
