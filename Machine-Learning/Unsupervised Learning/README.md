@@ -1,5 +1,7 @@
 **Unsupervised Learning: Dimensionality Reduction and Clustering**
 
+**Introduction Principal Component Analysis**
+
 Here we have a set of initial imports :
 
 ```
@@ -34,6 +36,7 @@ print(pca.explained_variance_ratio_)
 print(pca.components_)
 ```
 OUTPUT:
+
 ![image](/uploads/79268d026cfcbae92e4353499fb1ba21/image.png)
 
 Let's to look at these numbers as vectors plottes on top of the data:
@@ -45,6 +48,7 @@ for length, vector in zip(pca.explained_variance_, pca.components_):
 plt.axis('equal');
 ```
 OUTPUT:
+
 ![image](/uploads/2437fee02587c54420582ff05c1245f2/image.png)
 
 As showed in image, one vector is longer than other, that means the "important" of each direction. 
@@ -56,6 +60,7 @@ print(X.shape)
 print(X_trans.shape)
 ```
 OUTPUT:
+
 ![image](/uploads/ca6a90c93c7b14e5d5e6d7036fb71621/image.png)
 
 We are compressing the data be throwing away 5% of the variance. Voici the data after the compression:
@@ -65,5 +70,15 @@ plt.plot(X[:, 0], X[:, 1], 'o', alpha=0.2)
 plt.plot(X_new[:, 0], X_new[:, 1], 'ob', alpha=0.8)
 plt.axis('equal');
 ```
+OUTPUT:
+![image](/uploads/f37d62b4662ed3f4124ec73a473f52e1/image.png)
+
+The dark points are the projected version. We see that the most important features of data are saved, and we have compressed the data by 50%
+
+THIS is the puissance of "dimensionality reduction" : By approximating a data set in a lower dimension, we have an easier time visualizing it or fitting complicated models to the data.
+
+
+
+
 
 
