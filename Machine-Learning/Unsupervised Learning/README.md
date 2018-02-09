@@ -77,6 +77,46 @@ The dark points are the projected version. We see that the most important featur
 
 THIS is the puissance of "dimensionality reduction" : By approximating a data set in a lower dimension, we have an easier time visualizing it or fitting complicated models to the data.
 
+**Application of PCA to Digits**
+We tested the dimensionality reduction method in two dimentions, and it seems a bit abstract, however the projection and dimentionality reduction can be useful in the case of visualizing figh-dimentionality data. 
+Let's to try the application of PCA on digits data (the same data points):
+```
+from sklearn.datasets import load_digits
+digits = load_digits()
+X = digits.data
+y = digits.target
+```
+```
+pca = PCA(2)  # project from 64 to 2 dimensions
+Xproj = pca.fit_transform(X)
+print(X.shape)
+print(Xproj.shape)
+```
+OUTPUT:
+
+![image](/uploads/18e5dacd472c1c5809b97b3b9d9519f3/image.png)
+
+```
+plt.scatter(Xproj[:, 0], Xproj[:, 1], c=y, edgecolor='none', alpha=0.5,
+            cmap=plt.cm.get_cmap('nipy_spectral', 10))
+plt.colorbar();
+```
+OUTPUT:
+
+![image](/uploads/36e8abbb5af165f85e7cc8dfecc5120b/image.png)
+
+More easy to look at the relationships between the digits. The optimal stretch and rotation in finded in 64-dimentional space, that permit to see the layout of digits with no reference to  the labels.
+
+**Components**
+PCA as a usful dimensionality reduction algorithm, having a very intuitive interpretation via eigenvectors. 
+The input data (digits here) is represented as a vector:
+
+$$
+x = [x_1, x_2, x_3 \cdots]
+$$
+
+```
+
 
 
 
